@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Post;
 use App\Http\Resources\PostCollection;
 use App\Http\Resources\PostResource;
+use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -56,9 +56,10 @@ class PostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        if (!$post) {
+        if (! $post) {
             return response()->json(['message' => 'Post not found'], 404);
         }
+
         return (new PostResource($post))->response()->setStatusCode(200);
     }
 
@@ -66,7 +67,7 @@ class PostController extends Controller
     {
         $post = Post::where('slug', $slug)->first();
 
-        if (!$post) {
+        if (! $post) {
             return response()->json(['message' => 'Post not found'], 404);
         }
 
@@ -75,7 +76,7 @@ class PostController extends Controller
             'content' => 'sometimes|string',
             'published_at' => 'sometimes|date',
             'status' => 'sometimes|in:published,draft',
-            'slug' => 'sometimes|string|max:255|unique:posts,slug,' . $post->id,
+            'slug' => 'sometimes|string|max:255|unique:posts,slug,'.$post->id,
         ]);
 
         if ($validator->fails()) {
@@ -90,10 +91,11 @@ class PostController extends Controller
     public function destroy($slug)
     {
         $post = Post::where('slug', $slug)->first();
-        if (!$post) {
+        if (! $post) {
             return response()->json(['message' => 'Post not found'], 404);
         }
         $post->delete();
+
         return response()->json(['message' => 'Post deleted successfully'], 204);
     }
 }

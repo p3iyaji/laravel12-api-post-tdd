@@ -1,10 +1,10 @@
 <?php
 
-use App\Models\User;
 use App\Models\Post;
-use Tests\TestCase;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Testing\Fluent\AssertableJson;
+use Tests\TestCase;
 
 class PostApiTest extends TestCase
 {
@@ -44,8 +44,7 @@ class PostApiTest extends TestCase
                         ])
                         ->where(
                             'published_at',
-                            fn($value) =>
-                            is_null($value) || is_string($value)
+                            fn ($value) => is_null($value) || is_string($value)
                         );
                 })
                     ->has('meta')

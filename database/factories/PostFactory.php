@@ -2,11 +2,9 @@
 
 namespace Database\Factories;
 
-use App\Models\User;
 use App\Models\Post;
-use Illuminate\Support\Str;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
-
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -23,6 +21,7 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $title = $this->faker->sentence();
+
         return [
             'id' => $this->faker->unique()->numberBetween(1, 1000),
             'title' => $title,
