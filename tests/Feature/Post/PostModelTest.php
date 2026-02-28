@@ -4,14 +4,12 @@ namespace Tests\Feature\Post;
 
 use App\Models\Post;
 use App\Models\User;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class PostModelTest extends TestCase
 {
     use RefreshDatabase;
-
-
 
     public function test_it_can_create_a_post()
     {
@@ -37,10 +35,9 @@ class PostModelTest extends TestCase
         $this->assertEquals('test-post', $post->slug);
     }
 
-
     public function test_it_has_fillable_attributes()
     {
-        $post = new Post();
+        $post = new Post;
         $fillable = ['title', 'content', 'user_id', 'published_at', 'status', 'slug'];
 
         $this->assertEquals($fillable, $post->getFillable());
