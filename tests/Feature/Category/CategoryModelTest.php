@@ -2,12 +2,12 @@
 
 namespace Tests\Feature\Category;
 
-use Tests\TestCase;
-use App\Models\Post;
 use App\Models\Category;
+use App\Models\Post;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
-class CategoryModelTest extends TestCase 
+class CategoryModelTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -29,7 +29,7 @@ class CategoryModelTest extends TestCase
     public function test_it_can_have_multiple_posts()
     {
         $category = Category::factory()->create();
-        $posts= Post::factory()->count(3)->create();
+        $posts = Post::factory()->count(3)->create();
 
         $category->posts()->attach($posts->pluck('id'));
 
