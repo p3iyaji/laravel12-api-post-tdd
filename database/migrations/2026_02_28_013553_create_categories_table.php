@@ -19,7 +19,7 @@ return new class extends Migration
             $table->timestamps();
         });
 
-        //pivot table for posts and categories
+        // pivot table for posts and categories
         Schema::create('category_post', function (Blueprint $table) {
             $table->id();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
