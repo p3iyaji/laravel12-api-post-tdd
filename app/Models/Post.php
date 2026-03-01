@@ -57,4 +57,9 @@ class Post extends Model
     {
         return $this->belongsToMany(Category::class)->withTimestamps();
     }
+
+    public function getExcerptAttribute($length = 200)
+    {
+        return Str::limit(strip_tags($this->content), $length);
+    }
 }
