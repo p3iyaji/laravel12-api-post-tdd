@@ -26,7 +26,7 @@ class PostFactory extends Factory
         return [
             'id' => $this->faker->unique()->numberBetween(1, 1000),
             'title' => $title,
-            'slug' => Str::slug($title, '-'),
+            //'slug' => Str::slug($title, '-'),
             'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
             'status' => $this->faker->randomElement(['published', 'draft']),
