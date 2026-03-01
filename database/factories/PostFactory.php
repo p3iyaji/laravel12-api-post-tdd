@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Post>
@@ -25,6 +26,7 @@ class PostFactory extends Factory
         return [
             'id' => $this->faker->unique()->numberBetween(1, 1000),
             'title' => $title,
+            'slug' => Str::slug($title, '-'),
             'content' => $this->faker->paragraph(),
             'user_id' => User::factory(),
             'status' => $this->faker->randomElement(['published', 'draft']),
